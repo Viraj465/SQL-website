@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDBMS Interview Mastery Guide</title>
+</head>
+<script src="sql_js.js"></script>
+<link rel="stylesheet" href="sql_css.css">
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 RDBMS Interview Mastery Guide</h1>
+            <p>Complete roadmap from beginner to advanced level for top MNC interviews</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number" id="conceptsLearned">0</span>
+                    <span>Concepts Learned</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="questionsAnswered">0</span>
+                    <span>Questions Answered</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="completionPercent">0%</span>
+                    <span>Completion</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <button class="nav-btn active" onclick="showSection('roadmap')">📋 Learning Roadmap</button>
+            <button class="nav-btn" onclick="showSection('basics')">🏗️ RDBMS Basics</button>
+            <button class="nav-btn" onclick="showSection('tables')">📊 Tables & Keys</button>
+            <button class="nav-btn" onclick="showSection('normalization')">🔧 Normalization</button>
+            <button class="nav-btn" onclick="showSection('sql-basics')">💻 SQL Fundamentals</button>
+            <button class="nav-btn" onclick="showSection('joins')">🔗 Joins & Relationships</button>
+            <button class="nav-btn" onclick="showSection('advanced-sql')">⚡ Advanced SQL</button>
+            <button class="nav-btn" onclick="showSection('indexes')">📈 Indexes & Performance</button>
+            <button class="nav-btn" onclick="showSection('transactions')">🔒 Transactions & ACID</button>
+            <button class="nav-btn" onclick="showSection('interview-prep')">🎤 Interview Prep</button>
+        </div>
+
+        <!-- Roadmap Section -->
+        <div id="roadmap" class="content-section active">
+            <h2>🗺️ Your RDBMS Learning Roadmap</h2>
+            <p>Follow this structured path to master RDBMS concepts for top MNC interviews:</p>
+            
+            <div class="roadmap">
+                <div class="roadmap-item" onclick="showSection('basics')">
+                    <h3>Week 1-2: Foundation</h3>
+                    <p>RDBMS Basics, Database Concepts, ER Diagrams</p>
+                </div>
+                <div class="roadmap-item" onclick="showSection('tables')">
+                    <h3>Week 2-3: Structure</h3>
+                    <p>Tables, Keys, Constraints, Relationships</p>
+                </div>
+                <div class="roadmap-item" onclick="showSection('normalization')">
+                    <h3>Week 3-4: Design</h3>
+                    <p>Normalization, Database Design Principles</p>
+                </div>
+                <div class="roadmap-item" onclick="showSection('sql-basics')">
+                    <h3>Week 4-5: SQL Basics</h3>
+                    <p>SELECT, INSERT, UPDATE, DELETE, Functions</p>
+                </div>
+                <div class="roadmap-item" onclick="showSection('joins')">
+                    <h3>Week 5-6: Advanced Queries</h3>
+                    <p>JOINs, Subqueries, Complex Relationships</p>
+                </div>
+                <div class="roadmap-item" onclick="showSection('advanced-sql')">
+                    <h3>Week 6-7: Advanced SQL</h3>
+                    <p>Window Functions, CTEs, Stored Procedures</p>
+                </div>
+                <div class="roadmap-item" onclick="showSection('indexes')">
+                    <h3>Week 7-8: Performance</h3>
+                    <p>Indexes, Query Optimization, Performance Tuning</p>
+                </div>
+                <div class="roadmap-item" onclick="showSection('transactions')">
+                    <h3>Week 8-9: Advanced Topics</h3>
+                    <p>Transactions, ACID, Concurrency, Locks</p>
+                </div>
+                <div class="roadmap-item" onclick="showSection('interview-prep')">
+                    <h3>Week 9-10: Interview Ready</h3>
+                    <p>Mock Interviews, Real Questions, Practice</p>
+                </div>
+            </div>
+
+            <div class="completion-tracker">
+                <h3>📊 Track Your Progress</h3>
+                <div id="completionList">
+                    <!-- Progress items will be added dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- RDBMS Basics Section -->
+        <div id="basics" class="content-section">
+            <h2>🏗️ RDBMS Fundamentals</h2>
+            <div class="concept-card">
+                <h3>What is an RDBMS?</h3>
+                <p><strong>Relational Database Management System (RDBMS)</strong> is a software system that manages data using a structured format of tables (relations) with rows and columns. It supports SQL for querying and ensures data integrity, security, and consistency.</p>
+                <div class="key-points">
+                    <ul>
+                        <li>Data is stored in tables (relations).</li>
+                        <li>Each row is a record; each column is a field/attribute.</li>
+                        <li>Supports primary keys, foreign keys, and constraints.</li>
+                        <li>Examples: MySQL, PostgreSQL, Oracle, SQL Server.</li>
+                    </ul>
+                </div>
+                <div class="example-box">
+-- Example: A simple Employee table
+CREATE TABLE Employee (
+    emp_id INT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    department VARCHAR(30),
+    salary DECIMAL(10,2),
+    hire_date DATE
+);
+                </div>
+            </div>
+            <div class="concept-card">
+                <h3>RDBMS vs DBMS</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+                    <tr style="background: #3498db; color: white;">
+                        <th>DBMS</th>
+                        <th>RDBMS</th>
+                    </tr>
+                    <tr>
+                        <td>Stores data as files or collections</td>
+                        <td>Stores data in tables (relations)</td>
+                    </tr>
+                    <tr>
+                        <td>No support for relationships</td>
+                        <td>Supports relationships via keys</td>
+                    </tr>
+                    <tr>
+                        <td>No normalization</td>
+                        <td>Supports normalization</td>
+                    </tr>
+                    <tr>
+                        <td>Examples: XML, File System</td>
+                        <td>Examples: MySQL, Oracle</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="concept-card">
+                <h3>Popular RDBMS Systems</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 15px 0;">
+                    <div><strong>MySQL</strong><br>Open-source, widely used for web apps.</div>
+                    <div><strong>PostgreSQL</strong><br>Advanced open-source, supports complex queries.</div>
+                    <div><strong>Oracle</strong><br>Enterprise-grade, robust security and features.</div>
+                    <div><strong>SQL Server</strong><br>Microsoft's RDBMS, integrates with .NET stack.</div>
+                </div>
+            </div>
+            <h3>🧠 Practice Questions - RDBMS Basics</h3>
+            <div class="question-container">
+                <div class="question">Q1: What is a primary key? Why is it important? <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">
+                    A <strong>primary key</strong> uniquely identifies each record in a table. It ensures no duplicate or NULL values, maintaining data integrity.
+                </div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q2: List three differences between DBMS and RDBMS. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">
+                    1. RDBMS stores data in tables; DBMS may use files.<br>
+                    2. RDBMS supports relationships; DBMS does not.<br>
+                    3. RDBMS enforces constraints and normalization; DBMS does not.
+                </div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q3: Name two open-source RDBMS and one commercial RDBMS. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">
+                    Open-source: MySQL, PostgreSQL<br>
+                    Commercial: Oracle
+                </div>
+            </div>
+            <div class="sql-practice">
+                <h4>🔨 Hands-on Practice</h4>
+                <p>Try the <a href="https://sqlzoo.net/wiki/SELECT_basics" target="_blank">SQLZoo SELECT Basics</a> to practice simple queries.</p>
+            </div>
+        </div>
+
+        <!-- Tables & Keys Section -->
+        <div id="tables" class="content-section">
+            <h2>📊 Tables & Keys</h2>
+            <div class="concept-card">
+                <h3>What is a Table?</h3>
+                <p>A <strong>table</strong> is a collection of related data organized in rows and columns. Each row is a record, and each column is a field.</p>
+                <div class="example-box">
+-- Example: Student Table
+CREATE TABLE Student (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT,
+    email VARCHAR(100)
+);
+                </div>
+            </div>
+            <div class="concept-card">
+                <h3>Types of Keys</h3>
+                <ul>
+                    <li><strong>Primary Key:</strong> Uniquely identifies each row.</li>
+                    <li><strong>Foreign Key:</strong> Links to primary key in another table.</li>
+                    <li><strong>Candidate Key:</strong> Any column(s) that can be a primary key.</li>
+                    <li><strong>Composite Key:</strong> Combination of columns as primary key.</li>
+                    <li><strong>Alternate Key:</strong> Candidate keys not chosen as primary.</li>
+                    <li><strong>Super Key:</strong> Set of columns that uniquely identify a row.</li>
+                </ul>
+            </div>
+            <h3>🧠 Practice Questions - Tables & Keys</h3>
+            <div class="question-container">
+                <div class="question">Q1: What is a foreign key? Give an example. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">
+                    A <strong>foreign key</strong> is a column that creates a relationship between two tables. Example:<br>
+                    <code>FOREIGN KEY (student_id) REFERENCES Student(student_id)</code>
+                </div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q2: What is the difference between a primary key and a unique key? <span class="difficulty-badge medium">Medium</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">
+                    <strong>Primary key</strong> cannot have NULLs and only one per table.<br>
+                    <strong>Unique key</strong> can have one NULL and multiple unique keys per table.
+                </div>
+            </div>
+            <div class="sql-practice">
+                <h4>🔨 Hands-on Practice</h4>
+                <p>Try <a href="https://sqlzoo.net/wiki/SELECT_from_WORLD_Tutorial" target="_blank">SQLZoo Table Practice</a>.</p>
+            </div>
+        </div>
+
+        <!-- Normalization Section -->
+        <div id="normalization" class="content-section">
+            <h2>🔧 Normalization</h2>
+            <div class="concept-card">
+                <h3>What is Normalization?</h3>
+                <p><strong>Normalization</strong> is the process of organizing data to reduce redundancy and improve data integrity. It involves dividing tables and defining relationships.</p>
+                <div class="key-points">
+                    <ul>
+                        <li>1NF: Eliminate repeating groups; atomic columns.</li>
+                        <li>2NF: Remove partial dependencies (non-key depends on part of composite key).</li>
+                        <li>3NF: Remove transitive dependencies (non-key depends on another non-key).</li>
+                        <li>BCNF: Every determinant is a candidate key.</li>
+                    </ul>
+                </div>
+                <div class="example-box">
+-- Example: Normalization Steps
+-- UNNORMALIZED TABLE
+Student_Courses
++------------+----------------+-------------------------+
+| student_id | student_name   | courses                 |
++------------+----------------+-------------------------+
+| 1          | John Smith     | Math, Physics, Chemistry|
+| 2          | Mary Johnson   | Biology, Chemistry      |
++------------+----------------+-------------------------+
+
+-- NORMALIZED TO 1NF
+Students                    Student_Courses
++------------+----------+    +------------+----------+
+| student_id | name     |    | student_id | course   |
++------------+----------+    +------------+----------+
+| 1          | John     |    | 1          | Math     |
+| 2          | Mary     |    | 1          | Physics  |
++------------+----------+    | 1          | Chemistry |
+                             | 2          | Biology  |
+                             | 2          | Chemistry |
+                             +------------+----------+
+                        </div>
+                    </div>
+                    <div style="background: #fff3e0; border-left: 4px solid #ff9800; padding: 15px; margin: 10px 0;">
+                        <h4>2️⃣ Second Normal Form (2NF)</h4>
+                        <p><strong>Rules:</strong></p>
+                        <ul>
+                            <li>Must be in 1NF</li>
+                            <li>No partial dependencies on composite primary key</li>
+                            <li>All non-key attributes fully depend on the entire primary key</li>
+                        </ul>
+                        
+                        <div class="example-box">
+-- VIOLATES 2NF (student_name depends only on student_id, not on full key)
+Student_Courses
++------------+--------------+----------+-------+
+| student_id | course_id    | name     | grade |
++------------+--------------+----------+-------+
+| 1          | CS101        | John     | A     |
+| 1          | CS102        | John     | B     |
++------------+--------------+----------+-------+
+Primary Key: (student_id, course_id)
+Problem: name depends only on student_id
+
+-- NORMALIZED TO 2NF
+Students                     Enrollments
++------------+----------+    +------------+----------+-------+
+| student_id | name     |    | student_id | course_id| grade |
++------------+----------+    +------------+----------+-------+
+| 1          | John     |    | 1          | CS101    | A     |
++------------+----------+    | 1          | CS102    | B     |
+                             +------------+----------+-------+
+                        </div>
+                    </div>
+
+                    <div style="background: #e3f2fd; border-left: 4px solid #2196f3; padding: 15px; margin: 10px 0;">
+                        <h4>3️⃣ Third Normal Form (3NF)</h4>
+                        <p><strong>Rules:</strong></p>
+                        <ul>
+                            <li>Must be in 2NF</li>
+                            <li>No transitive dependencies</li>
+                            <li>Non-key attributes should not depend on other non-key attributes</li>
+                        </ul>
+                        
+                        <div class="example-box">
+-- VIOLATES 3NF (advisor_office depends on advisor_name, not student_id)
+Students
++------------+----------+--------------+---------------+
+| student_id | name     | advisor_name | advisor_office|
++------------+----------+--------------+---------------+
+| 1          | John     | Dr. Smith    | Room 101      |
+| 2          | Mary     | Dr. Smith    | Room 101      |
++------------+----------+--------------+---------------+
+Problem: advisor_office depends on advisor_name (transitive dependency)
+
+-- NORMALIZED TO 3NF
+Students                     Advisors
++------------+----------+    +--------------+---------------+
+| student_id | name     |    | advisor_name | advisor_office|
+| advisor_id | advisor  |    +--------------+---------------+
++------------+----------+    | Dr. Smith    | Room 101      |
+| 1          | John     |    +--------------+---------------+
+| 2          | Mary     |
++------------+----------+
+                        </div>
+                    </div>
+                    <div style="background: #fce4ec; border-left: 4px solid #e91e63; padding: 15px; margin: 10px 0;">
+                        <div class="example-box">
+-- Example: Course_Instructor table
+-- Assumptions: 
+-- - Each course can have multiple instructors
+-- - Each instructor teaches only one course
+-- - A course-instructor combination is unique
+
+Course_Instructor (VIOLATES BCNF)
++----------+-----------+----------+
+| course   | instructor| room     |
++----------+-----------+----------+
+| Database | Dr.Smith  | Room 101 |
+| Database | Dr.Jones  | Room 102 |
++----------+-----------+----------+
+
+Functional Dependencies:
+- {course, instructor} → room (candidate key)
+- instructor → course (BCNF violation - instructor is not a super key)
+
+-- NORMALIZED TO BCNF
+Instructors              Course_Rooms
++-----------+----------+ +---------+----------+
+| instructor| course   | | course  | room     |
++-----------+----------+ +---------+----------+
+| Dr.Smith  | Database | | Database| Room 101 |
+| Dr.Jones  | Database | | Database| Room 102 |
++-----------+----------+ +---------+----------+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="concept-card">
+            </div>
+            <h3>🧠 Practice Questions - Normalization</h3>
+            <div class="question-container">
+                <div class="question">Q1: What is 2NF? Give an example. <span class="difficulty-badge medium">Medium</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">
+                    <strong>2NF (Second Normal Form):</strong> A table is in 2NF if it is in 1NF and all non-key attributes are fully functionally dependent on the entire primary key.<br>
+                    <strong>Example:</strong> In a table with primary key (student_id, course_id), grade is fully dependent on both, but student_name only on student_id (violates 2NF).
+                </div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q2: What is the difference between 3NF and BCNF? When would you choose BCNF over 3NF? <span class="difficulty-badge hard">Hard</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">
+                    <strong>3NF:</strong> Every non-prime attribute is non-transitively dependent on every key.<br>
+                    <strong>BCNF:</strong> Every determinant is a candidate key.<br>
+                    <strong>Choose BCNF</strong> when there are anomalies in 3NF due to non-candidate key determinants.
+                </div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q3: Design a normalized database schema for an Online Bookstore. Consider books, authors, customers, orders, and reviews. Ensure it's in 3NF. <span class="difficulty-badge hard">Hard</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">
+                    <strong>Books, Authors, Customers, Orders, Order_Items, Reviews, Addresses</strong> tables, with foreign keys and no transitive dependencies. See example schema in the code above for details.
+                </div>
+            </div>
+            <div class="sql-practice">
+                <h4>🔨 Hands-on Practice</h4>
+                <p>Try <a href="https://sqlzoo.net/wiki/More_JOIN_operations" target="_blank">SQLZoo Join Practice</a>.</p>
+            </div>
+        </div>
+
+        <!-- ER Diagrams & Data Modeling Section -->
+        <div id="er-diagrams" class="content-section">
+            <h2>🖼️ ER Diagrams & Data Modeling</h2>
+            <div class="concept-card">
+                <h3>What is an ER Diagram?</h3>
+                <p>An <strong>Entity-Relationship (ER) Diagram</strong> visually represents the structure of a database, showing entities (tables), their attributes (fields), and relationships between them. It helps in designing a robust database schema before implementation.</p>
+                <div class="key-points">
+                    <ul>
+                        <li><strong>Entity:</strong> Real-world object (e.g., Student, Book)</li>
+                        <li><strong>Attribute:</strong> Property of an entity (e.g., student_id, name)</li>
+                        <li><strong>Relationship:</strong> Association between entities (e.g., Student borrows Book)</li>
+                        <li><strong>Cardinality:</strong> Defines number of instances (1:1, 1:N, M:N)</li>
+                    </ul>
+                </div>
+                <div class="example-box">
+-- Example: Library ER Diagram (Textual)
+Entities: Student, Book, Loan
+Relationships:
+- Student <b>borrows</b> Book (via Loan)
+- Book <b>is loaned to</b> Student (via Loan)
+
+Student(student_id, name, ...)
+Book(book_id, title, ...)
+Loan(loan_id, student_id, book_id, loan_date, ...)
+                </div>
+            </div>
+            <h3>🧠 Practice Questions - ER Diagrams</h3>
+            <div class="question-container">
+                <div class="question">Q1: Draw an ER diagram for a simple e-commerce system (Customer, Order, Product). Identify entities, attributes, and relationships. <span class="difficulty-badge medium">Medium</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">
+                    <strong>Entities:</strong> Customer, Order, Product<br>
+                    <strong>Relationships:</strong> Customer <b>places</b> Order, Order <b>contains</b> Product<br>
+                    <strong>Attributes:</strong><br>
+                    • Customer: customer_id (PK), name, email<br>
+                    • Order: order_id (PK), order_date, customer_id (FK)<br>
+                    • Product: product_id (PK), name, price<br>
+                    <br>
+                    <strong>ER Diagram (Textual):</strong><br>
+                    Customer (1) --- (N) Order (1) --- (N) Order_Product (N) --- (1) Product
+                </div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q2: What is the difference between a strong and a weak entity? Give an example. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">
+                    <strong>Strong Entity:</strong> Has a primary key, exists independently (e.g., Student).<br>
+                    <strong>Weak Entity:</strong> Cannot exist without a related strong entity, uses a foreign key as part of its primary key (e.g., OrderItem depends on Order).<br>
+                    <strong>Example:</strong> Order (strong), OrderItem (weak, identified by order_id + item_id).
+                </div>
+            </div>
+            <div class="sql-practice">
+                <h4>🔨 Hands-on Practice</h4>
+                <p>Try creating ER diagrams for your own scenarios using <a href="https://dbdiagram.io/" target="_blank">dbdiagram.io</a> or <a href="https://www.lucidchart.com/pages/er-diagram-tool" target="_blank">Lucidchart</a>.</p>
+            </div>
+        </div>
+
+        <!-- SQL Fundamentals Section -->
+        <div id="sql-basics" class="content-section">
+            <h2>💻 SQL Fundamentals</h2>
+            <div class="concept-card">
+                <h3>What is SQL?</h3>
+                <p><strong>SQL (Structured Query Language)</strong> is the standard language for interacting with relational databases. It is used to create, modify, manage, and query data.</p>
+                <div class="key-points">
+                    <ul>
+                        <li><strong>DDL:</strong> Data Definition Language (CREATE, ALTER, DROP)</li>
+                        <li><strong>DML:</strong> Data Manipulation Language (SELECT, INSERT, UPDATE, DELETE)</li>
+                        <li><strong>DCL:</strong> Data Control Language (GRANT, REVOKE)</li>
+                        <li><strong>TCL:</strong> Transaction Control Language (COMMIT, ROLLBACK)</li>
+                    </ul>
+                </div>
+                <div class="example-box">
+-- Example: Basic SELECT Query
+SELECT name, salary FROM Employee WHERE department = 'HR';
+                </div>
+            </div>
+            <h3>🧠 SQL Interview Questions (Simple to Complex)</h3>
+            <div class="question-container">
+                <div class="question">Q1: Select all columns from the Employee table. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT * FROM Employee;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q2: Select the names of all employees in the 'Sales' department. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT name FROM Employee WHERE department = 'Sales';</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q3: Count the number of employees in each department. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT department, COUNT(*) FROM Employee GROUP BY department;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q4: Find the average salary of employees. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT AVG(salary) FROM Employee;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q5: List employees hired after 2020-01-01. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT * FROM Employee WHERE hire_date &gt; '2020-01-01';</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q6: Show the highest salary in the Employee table. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT MAX(salary) FROM Employee;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q7: Find employees whose name starts with 'A'. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT * FROM Employee WHERE name LIKE 'A%';</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q8: List unique departments. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT DISTINCT department FROM Employee;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q9: Select employees with salary between 40000 and 60000. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT * FROM Employee WHERE salary BETWEEN 40000 AND 60000;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q10: Order employees by salary descending. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT * FROM Employee ORDER BY salary DESC;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q11: Add a new employee to the Employee table. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">INSERT INTO Employee (emp_id, name, department, salary, hire_date) VALUES (101, 'John Doe', 'IT', 55000, '2023-01-15');</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q12: Update salary of employee with emp_id=101 to 60000. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">UPDATE Employee SET salary = 60000 WHERE emp_id = 101;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q13: Delete employees from 'HR' department. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">DELETE FROM Employee WHERE department = 'HR';</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q14: Find employees with NULL department. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT * FROM Employee WHERE department IS NULL;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q15: Show the number of employees in each department, only if more than 5. <span class="difficulty-badge medium">Medium</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT department, COUNT(*) FROM Employee GROUP BY department HAVING COUNT(*) &gt; 5;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q16: Find the second highest salary. <span class="difficulty-badge medium">Medium</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT MAX(salary) FROM Employee WHERE salary &lt; (SELECT MAX(salary) FROM Employee);</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q17: List employees who do not belong to any department. <span class="difficulty-badge medium">Medium</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT * FROM Employee WHERE department IS NULL;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q18: Select employees hired in the last 6 months. <span class="difficulty-badge medium">Medium</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT * FROM Employee WHERE hire_date &gt;= DATEADD(MONTH, -6, GETDATE());</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q19: Find employees whose salary is above the department average. <span class="difficulty-badge medium">Medium</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT * FROM Employee e WHERE salary &gt; (SELECT AVG(salary) FROM Employee WHERE department = e.department);</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q20: Select employees who have the same salary as someone else. <span class="difficulty-badge hard">Hard</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT * FROM Employee WHERE salary IN (SELECT salary FROM Employee GROUP BY salary HAVING COUNT(*) &gt; 1);</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q21: Find the department with the highest total salary. <span class="difficulty-badge hard">Hard</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT department FROM Employee GROUP BY department ORDER BY SUM(salary) DESC LIMIT 1;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q22: List employees who earn more than their manager. (Assume manager_id in Employee) <span class="difficulty-badge hard">Hard</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT e1.* FROM Employee e1 JOIN Employee e2 ON e1.manager_id = e2.emp_id WHERE e1.salary &gt; e2.salary;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q23: Write a query to swap salaries of two employees with emp_id 1 and 2. <span class="difficulty-badge hard">Hard</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">UPDATE Employee SET salary = CASE WHEN emp_id = 1 THEN (SELECT salary FROM Employee WHERE emp_id = 2) WHEN emp_id = 2 THEN (SELECT salary FROM Employee WHERE emp_id = 1) END WHERE emp_id IN (1,2);</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q24: Find employees who have never received a bonus. (Assume Bonus table) <span class="difficulty-badge hard">Hard</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT * FROM Employee e WHERE NOT EXISTS (SELECT 1 FROM Bonus b WHERE b.emp_id = e.emp_id);</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q25: Write a query to get the cumulative salary by hire_date. <span class="difficulty-badge hard">Hard</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT name, hire_date, SUM(salary) OVER (ORDER BY hire_date) AS cumulative_salary FROM Employee;</div>
+            </div>
+            <h3>📝 Practice Questions (Try Yourself)</h3>
+            <div class="sql-practice">
+                <ul>
+                    <li>List all employees whose name contains 'son'.</li>
+                    <li>Find the minimum salary in each department.</li>
+                    <li>Show the top 3 highest paid employees.</li>
+                    <li>Count employees hired in each year.</li>
+                    <li>Find employees who joined on a weekend.</li>
+                    <li>List employees who have not updated their email.</li>
+                    <li>Show employees with duplicate email addresses.</li>
+                    <li>Find the department with the fewest employees.</li>
+                    <li>List employees who have never been promoted. (Assume Promotion table)</li>
+                    <li>Show the average salary for each job title.</li>
+                    <li>Find employees who joined before their manager.</li>
+                    <li>List employees who have the same hire date as their manager.</li>
+                    <li>Show the most common job title.</li>
+                    <li>Find employees who have worked in more than one department. (Assume JobHistory table)</li>
+                    <li>List employees who have not taken any leave. (Assume Leave table)</li>
+                    <li>Show the difference between each employee's salary and the department average.</li>
+                    <li>Find employees who have a salary above the company median.</li>
+                    <li>List employees who have a NULL value in any column.</li>
+                    <li>Show the percentage of employees in each department.</li>
+                    <li>Find employees who have the same name as their manager.</li>
+                </ul>
+            </div>
+            <div class="sql-practice">
+                <h4>🔨 Hands-on Practice</h4>
+                <p>Try <a href="https://sqlzoo.net/wiki/SELECT_basics" target="_blank">SQLZoo SELECT Practice</a>.</p>
+            </div>
+        </div>
+
+        <!-- Joins & Relationships Section -->
+        <div id="joins" class="content-section">
+            <h2>🔗 Joins & Relationships</h2>
+            <div class="concept-card">
+                <h3>What is a Join?</h3>
+                <p>A <strong>JOIN</strong> combines rows from two or more tables based on a related column. It helps retrieve related data spread across multiple tables.</p>
+                <div class="key-points">
+                    <ul>
+                        <li><strong>INNER JOIN:</strong> Returns rows with matching values in both tables.</li>
+                        <li><strong>LEFT JOIN:</strong> Returns all rows from the left table, and matched rows from the right table.</li>
+                        <li><strong>RIGHT JOIN:</strong> Returns all rows from the right table, and matched rows from the left table.</li>
+                        <li><strong>FULL OUTER JOIN:</strong> Returns all rows when there is a match in one of the tables.</li>
+                        <li><strong>CROSS JOIN:</strong> Returns the Cartesian product of both tables.</li>
+                    </ul>
+                </div>
+                <div class="example-box">
+-- Example: INNER JOIN
+SELECT s.name, e.grade
+FROM Student s
+INNER JOIN Enrollments e ON s.student_id = e.student_id;
+                </div>
+            </div>
+            <h3>🧠 SQL Join Questions (Simple to Complex)</h3>
+            <div class="question-container">
+                <div class="question">Q1: List all students and their enrolled courses. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT s.name, c.course_name FROM Student s INNER JOIN Enrollments e ON s.student_id = e.student_id INNER JOIN Course c ON e.course_id = c.course_id;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q2: List all employees and their department names. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT e.name, d.department_name FROM Employee e INNER JOIN Department d ON e.department_id = d.department_id;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q3: Find employees who do not belong to any department. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT e.name FROM Employee e LEFT JOIN Department d ON e.department_id = d.department_id WHERE d.department_id IS NULL;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q4: List all departments and the number of employees in each. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT d.department_name, COUNT(e.emp_id) FROM Department d LEFT JOIN Employee e ON d.department_id = e.department_id GROUP BY d.department_name;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q5: List all students who have not enrolled in any course. <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT s.name FROM Student s LEFT JOIN Enrollments e ON s.student_id = e.student_id WHERE e.student_id IS NULL;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q6: List all employees and their manager names. (Assume manager_id in Employee) <span class="difficulty-badge medium">Medium</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT e.name AS employee, m.name AS manager FROM Employee e LEFT JOIN Employee m ON e.manager_id = m.emp_id;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q7: List all employees who share the same department as 'John'. <span class="difficulty-badge medium">Medium</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT e2.* FROM Employee e1 JOIN Employee e2 ON e1.department_id = e2.department_id WHERE e1.name = 'John' AND e2.name != 'John';</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q8: List all employees and their project names (assume Project and Employee_Project tables). <span class="difficulty-badge medium">Medium</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT e.name, p.project_name FROM Employee e JOIN Employee_Project ep ON e.emp_id = ep.emp_id JOIN Project p ON ep.project_id = p.project_id;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q9: List all employees who work on more than one project. <span class="difficulty-badge medium">Medium</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT e.name FROM Employee e JOIN Employee_Project ep ON e.emp_id = ep.emp_id GROUP BY e.name HAVING COUNT(ep.project_id) > 1;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q10: List all employees who do not manage anyone. <span class="difficulty-badge medium">Medium</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT e.name FROM Employee e LEFT JOIN Employee m ON e.emp_id = m.manager_id WHERE m.emp_id IS NULL;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q11: List all employees and their department and project names. <span class="difficulty-badge hard">Hard</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT e.name, d.department_name, p.project_name FROM Employee e JOIN Department d ON e.department_id = d.department_id LEFT JOIN Employee_Project ep ON e.emp_id = ep.emp_id LEFT JOIN Project p ON ep.project_id = p.project_id;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q12: List all employees who have the same manager. <span class="difficulty-badge hard">Hard</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT e1.name, e2.name AS colleague FROM Employee e1 JOIN Employee e2 ON e1.manager_id = e2.manager_id AND e1.emp_id != e2.emp_id;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q13: List all employees who have never worked on a project. <span class="difficulty-badge hard">Hard</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT e.name FROM Employee e LEFT JOIN Employee_Project ep ON e.emp_id = ep.emp_id WHERE ep.project_id IS NULL;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q14: List all employees who work in the same department as their manager. <span class="difficulty-badge hard">Hard</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT e.name FROM Employee e JOIN Employee m ON e.manager_id = m.emp_id WHERE e.department_id = m.department_id;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q15: List all employees who have worked on all projects. <span class="difficulty-badge hard">Hard</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT e.name FROM Employee e JOIN Employee_Project ep ON e.emp_id = ep.emp_id GROUP BY e.name HAVING COUNT(DISTINCT ep.project_id) = (SELECT COUNT(*) FROM Project);</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q16: List all employees who have worked with 'Alice' on any project. <span class="difficulty-badge hard">Hard</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT DISTINCT e2.name FROM Employee_Project ep1 JOIN Employee_Project ep2 ON ep1.project_id = ep2.project_id JOIN Employee e1 ON ep1.emp_id = e1.emp_id JOIN Employee e2 ON ep2.emp_id = e2.emp_id WHERE e1.name = 'Alice' AND e2.name != 'Alice';</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q17: List all employees who have never had a manager. <span class="difficulty-badge hard">Hard</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT name FROM Employee WHERE manager_id IS NULL;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q18: List all employees who have managed at least 3 people. <span class="difficulty-badge hard">Hard</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT m.name FROM Employee m JOIN Employee e ON m.emp_id = e.manager_id GROUP BY m.name HAVING COUNT(e.emp_id) >= 3;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q19: List all employees who have worked in more than one department (assume JobHistory table). <span class="difficulty-badge hard">Hard</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT e.name FROM Employee e JOIN JobHistory jh ON e.emp_id = jh.emp_id GROUP BY e.name HAVING COUNT(DISTINCT jh.department_id) > 1;</div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q20: List all employees who have never taken a leave (assume Leave table). <span class="difficulty-badge hard">Hard</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">SELECT e.name FROM Employee e LEFT JOIN Leave l ON e.emp_id = l.emp_id WHERE l.emp_id IS NULL;</div>
+            </div>
+            <h3>📝 Practice Questions (Try Yourself)</h3>
+            <div class="sql-practice">
+                <ul>
+                    <li>List all employees who have the same job title as their manager.</li>
+                    <li>List all students who have enrolled in more than 3 courses.</li>
+                    <li>List all employees who have worked on a project in the last year.</li>
+                    <li>List all employees who have never received a bonus (assume Bonus table).</li>
+                    <li>List all employees who have worked with both 'Alice' and 'Bob' on any project.</li>
+                    <li>List all employees who have managed someone who has also managed others.</li>
+                    <li>List all employees who have worked in the same department for more than 5 years (assume JobHistory table).</li>
+                    <li>List all employees who have never changed their department.</li>
+                    <li>List all employees who have worked on the most projects.</li>
+                    <li>List all employees who have never been assigned a project.</li>
+                    <li>List all employees who have worked in every department.</li>
+                    <li>List all employees who have the same name as their manager.</li>
+                    <li>List all employees who have worked on a project with more than 10 people.</li>
+                    <li>List all employees who have worked on a project with 'John' but not with 'Alice'.</li>
+                    <li>List all employees who have worked on a project in the 'IT' department.</li>
+                    <li>List all employees who have worked on a project in every year since joining.</li>
+                    <li>List all employees who have worked on a project in more than one country (assume Project table has country).</li>
+                    <li>List all employees who have worked on a project with a budget over $1M.</li>
+                    <li>List all employees who have worked on a project with a deadline in the next month.</li>
+                    <li>List all employees who have worked on a project with a client from 'USA'.</li>
+                </ul>
+            </div>
+            <div class="sql-practice">
+                <h4>🔨 Hands-on Practice</h4>
+                <p>Try <a href="https://sqlzoo.net/wiki/SQL_JOIN" target="_blank">SQLZoo Join Practice</a>.</p>
+            </div>
+        </div>
+
+        <!-- Advanced SQL Section -->
+        <div id="advanced-sql" class="content-section">
+            <h2>⚡ Advanced SQL</h2>
+            <div class="concept-card">
+                <h3>Subqueries & Nested Queries</h3>
+                <p>A <strong>subquery</strong> is a query within another query. Useful for filtering, aggregation, and complex logic.</p>
+                <div class="example-box">
+-- Example: Subquery
+SELECT name FROM Employee
+WHERE salary > (SELECT AVG(salary) FROM Employee);
+                </div>
+            </div>
+            <div class="concept-card">
+                <h3>Window Functions</h3>
+                <p>Window functions perform calculations across a set of table rows related to the current row.</p>
+                <div class="example-box">
+-- Example: ROW_NUMBER()
+SELECT name, salary, ROW_NUMBER() OVER (ORDER BY salary DESC) as rank
+FROM Employee;
+                </div>
+            </div>
+            <div class="concept-card">
+                <h3>Common Table Expressions (CTE)</h3>
+                <div class="example-box">
+-- Example: CTE
+WITH HighEarners AS (
+    SELECT name, salary FROM Employee WHERE salary > 70000
+)
+SELECT * FROM HighEarners;
+                </div>
+            </div>
+            <h3>🧠 Practice Questions - Advanced SQL</h3>
+            <div class="question-container">
+                <div class="question">Q1: Write a query to find the second highest salary from Employee. <span class="difficulty-badge medium">Medium</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">
+                    SELECT MAX(salary) FROM Employee WHERE salary < (SELECT MAX(salary) FROM Employee);
+                </div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q2: What is a window function? Give an example. <span class="difficulty-badge medium">Medium</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">
+                    A <strong>window function</strong> performs calculations across a set of rows related to the current row. Example: ROW_NUMBER(), RANK(), SUM() OVER(...)
+                </div>
+            </div>
+            <div class="sql-practice">
+                <h4>🔨 Hands-on Practice</h4>
+                <p>Try <a href="https://sqlzoo.net/wiki/Window_functions" target="_blank">SQLZoo Window Functions</a>.</p>
+            </div>
+        </div>
+
+        <!-- Indexes & Performance Section -->
+        <div id="indexes" class="content-section">
+            <h2>📈 Indexes & Performance</h2>
+            <div class="concept-card">
+                <h3>What is an Index?</h3>
+                <p>An <strong>index</strong> is a database object that improves the speed of data retrieval operations on a table at the cost of additional space and slower writes.</p>
+                <div class="key-points">
+                    <ul>
+                        <li>Speeds up SELECT queries</li>
+                        <li>Can be created on one or more columns</li>
+                        <li>Too many indexes can slow down INSERT/UPDATE/DELETE</li>
+                    </ul>
+                </div>
+                <div class="example-box">
+-- Example: Creating an Index
+CREATE INDEX idx_salary ON Employee(salary);
+                </div>
+            </div>
+            <h3>🧠 Practice Questions - Indexes</h3>
+            <div class="question-container">
+                <div class="question">Q1: What are the pros and cons of using indexes? <span class="difficulty-badge medium">Medium</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">
+                    <strong>Pros:</strong> Faster SELECT queries.<br>
+                    <strong>Cons:</strong> Slower writes, more storage used.
+                </div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q2: When should you avoid using indexes? <span class="difficulty-badge medium">Medium</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">
+                    Avoid indexes on columns with many duplicate values or on small tables where scanning is faster.
+                </div>
+            </div>
+            <div class="sql-practice">
+                <h4>🔨 Hands-on Practice</h4>
+                <p>Try <a href="https://sqlzoo.net/wiki/Indexes" target="_blank">SQLZoo Index Practice</a>.</p>
+            </div>
+        </div>
+
+        <!-- Transactions & ACID Section -->
+        <div id="transactions" class="content-section">
+            <h2>🔒 Transactions & ACID</h2>
+            <div class="concept-card">
+                <h3>What is a Transaction?</h3>
+                <p>A <strong>transaction</strong> is a sequence of one or more SQL operations executed as a single unit. Transactions ensure data integrity and consistency.</p>
+                <div class="key-points">
+                    <ul>
+                        <li><strong>Atomicity:</strong> All or nothing</li>
+                        <li><strong>Consistency:</strong> Valid state before and after</li>
+                        <li><strong>Isolation:</strong> Transactions do not interfere</li>
+                        <li><strong>Durability:</strong> Once committed, changes persist</li>
+                    </ul>
+                </div>
+                <div class="example-box">
+-- Example: Transaction
+BEGIN;
+UPDATE Account SET balance = balance - 100 WHERE acc_id = 1;
+UPDATE Account SET balance = balance + 100 WHERE acc_id = 2;
+COMMIT;
+                </div>
+            </div>
+            <h3>🧠 Practice Questions - Transactions & ACID</h3>
+            <div class="question-container">
+                <div class="question">Q1: What are the four properties of a transaction (ACID)? <span class="difficulty-badge easy">Easy</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">
+                    <strong>Atomicity, Consistency, Isolation, Durability</strong>
+                </div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q2: What is a dirty read? <span class="difficulty-badge medium">Medium</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">
+                    A <strong>dirty read</strong> occurs when a transaction reads data written by another transaction that has not yet been committed.
+                </div>
+            </div>
+            <div class="question-container">
+                <div class="question">Q3: Write SQL to rollback a transaction if an error occurs. <span class="difficulty-badge medium">Medium</span></div>
+                <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                <div class="answer">
+                    BEGIN;
+                    -- SQL statements
+                    IF error THEN ROLLBACK; ELSE COMMIT; END IF;
+                </div>
+            </div>
+            <div class="sql-practice">
+                <h4>🔨 Hands-on Practice</h4>
+                <p>Try <a href="https://sqlzoo.net/wiki/Transactions" target="_blank">SQLZoo Transactions Practice</a>.</p>
+            </div>
+        </div>
+
+        <!-- Interview Preparation Section -->
+        <div id="interview-prep" class="content-section">
+            <h2>🎤 Interview Preparation</h2>
+            <p>Tips and resources to prepare for your RDBMS interview:</p>
+            <div class="concept-card">
+                <h3>Common Interview Questions</h3>
+                <ul>
+                    <li>What is the difference between INNER JOIN and LEFT JOIN?</li>
+                    <li>Explain normalization and its types.</li>
+                    <li>What are ACID properties?</li>
+                    <li>How do you optimize a slow-running query?</li>
+                    <li>What is a deadlock? How do you prevent it?</li>
+                </ul>
+            </div>
+            <div class="concept-card">
+                <h3>Interview Tips</h3>
+                <p>Be clear with your fundamentals, practice SQL queries, and understand the concepts of normalization, indexing, and transactions. Mock interviews can help you gain confidence.</p>
+            </div>
+            <div class="sql-practice">
+                <h4>🔨 Mock Interview Practice</h4>
+                <p>Use platforms like <a href="https://www.pramp.com/" target="_blank">Pramp</a> or <a href="https://www.interviewing.io/" target="_blank">Interviewing.io</a> for mock interviews.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
